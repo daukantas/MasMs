@@ -8,17 +8,33 @@
 
 #import "MasMsSMSTableViewController.h"
 #import "MasMsEditorViewController.h"
+#import "MasMsEditorViewControllerDelegate.h"
 
 #define HAS_RUN_APP_ONCE_KEY @"hasRunAppOnceKey"
 #define TEMPLATES_KEY @"templateKey"
 #define NEW_TEMPLATE_INDEX -1
 
-@interface MasMsSMSTableViewController ()
+@interface MasMsSMSTableViewController () <MasMsEditorViewControllerDelegate>
 @property (nonatomic, strong) NSArray *templates;
 @property (nonatomic) NSInteger index;
 @end
 
 @implementation MasMsSMSTableViewController
+
+- (void)saveSMS:(NSString *)sms {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *templates = [[defaults arrayForKey:TEMPLATES_KEY] mutableCopy];
+    
+    if (self.index == NEW_TEMPLATE_INDEX) {
+        [templates addObject:sms];
+    } else {
+        [templates replaceObjectAtIndex:self.index withObject:sms];
+    }
+    
+   [defaults setObject:templates forKey:TEMPLATES_KEY];
+   [defaults synchronize];
+   [self.tableView reloadData];
+}
 
 - (IBAction)new:(id)sender {
     self.index = NEW_TEMPLATE_INDEX;
@@ -68,8 +84,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"SMS Editor"]) {
         NSString *sms = self.index == NEW_TEMPLATE_INDEX ? @"" : [self.templates objectAtIndex:self.index];
-        [segue.destinationViewController setSms:sms];
-        [segue.destinationViewController setSms_index:self.index];
+        MasMsEditorViewController *editor = segue.destinationViewController;
+        editor.delegate = self;
+        [editor setSms:sms];
     }
 }
 

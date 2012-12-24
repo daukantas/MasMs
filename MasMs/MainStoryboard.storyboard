@@ -80,6 +80,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="2kv-U9-Aqe" id="aWk-rd-g0g"/>
                         <outlet property="textView" destination="E9Y-3Y-RBr" id="Nvy-p5-tNe"/>
                     </connections>
                 </viewController>
@@ -106,6 +107,25 @@
             <point key="canvasLocation" x="149" y="-246"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="MasMsEditorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasMsEditorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="save:"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="MasMsSMSTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasMsSMSTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="new:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

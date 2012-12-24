@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasMsEditorViewControllerDelegate.h"
 
 @interface MasMsEditorViewController : UIViewController
 
-@property (nonatomic) NSInteger sms_index; // edit SMS index in templates
 @property (nonatomic, strong) NSString *sms; // edit SMS content
+@property (nonatomic, weak) id delegate;
 
 @end

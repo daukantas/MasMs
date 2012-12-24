@@ -8,13 +8,28 @@
 
 #import "MasMsEditorViewController.h"
 
-@interface MasMsEditorViewController ()
+@interface MasMsEditorViewController () <UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @end
 
 @implementation MasMsEditorViewController
+
+- (BOOL)checkSMS {
+    NSString *value = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    return ([value length] != 0) ? YES : NO;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.saveButton.enabled = [self checkSMS];
+}
+
 - (IBAction)save:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self checkSMS]) {
+        [self.delegate saveSMS:self.textView.text];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,9 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.textView becomeFirstResponder];
     
-    if (self.sms) self.textView.text = self.sms;
+    self.textView.text = self.sms;
+    self.textView.delegate = self;
+    self.saveButton.enabled = [self checkSMS];
+    
+    [self.textView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

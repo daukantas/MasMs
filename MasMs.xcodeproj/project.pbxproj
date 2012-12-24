@@ -42,6 +42,7 @@
 		04E2BE39168879E800558673 /* MasMsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsEditorViewController.h; sourceTree = "<group>"; };
 		04E2BE3A168879E800558673 /* MasMsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsEditorViewController.m; sourceTree = "<group>"; };
 		04E2BE3D1688C46A00558673 /* DefaultSMS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSMS.plist; sourceTree = "<group>"; };
+		04E2BE4B1688E3CC00558673 /* MasMsEditorViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsEditorViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 				04166BF416885EBF005F0758 /* MasMsSMSTableViewController.h */,
 				04166BF516885EBF005F0758 /* MasMsSMSTableViewController.m */,
 				042B1C1C16884AD5008DDDCF /* Supporting Files */,
+				04E2BE4B1688E3CC00558673 /* MasMsEditorViewControllerDelegate.h */,
 			);
 			path = MasMs;
 			sourceTree = "<group>";
