@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04166BEF16885E29005F0758 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04166BEE16885E29005F0758 /* MainStoryboard.storyboard */; };
+		04166BF616885EBF005F0758 /* MasMsSMSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04166BF516885EBF005F0758 /* MasMsSMSTableViewController.m */; };
 		042B1C1616884AD5008DDDCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1516884AD5008DDDCF /* UIKit.framework */; };
 		042B1C1816884AD5008DDDCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1716884AD5008DDDCF /* Foundation.framework */; };
 		042B1C1A16884AD5008DDDCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1916884AD5008DDDCF /* CoreGraphics.framework */; };
@@ -16,9 +18,14 @@
 		042B1C2816884AD5008DDDCF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2716884AD5008DDDCF /* Default.png */; };
 		042B1C2A16884AD5008DDDCF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2916884AD5008DDDCF /* Default@2x.png */; };
 		042B1C2C16884AD5008DDDCF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */; };
+		04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2BE3A168879E800558673 /* MasMsEditorViewController.m */; };
+		04E2BE3E1688C46A00558673 /* DefaultSMS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E2BE3D1688C46A00558673 /* DefaultSMS.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04166BEE16885E29005F0758 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		04166BF416885EBF005F0758 /* MasMsSMSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsSMSTableViewController.h; sourceTree = SOURCE_ROOT; };
+		04166BF516885EBF005F0758 /* MasMsSMSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsSMSTableViewController.m; sourceTree = SOURCE_ROOT; };
 		042B1C1116884AD5008DDDCF /* MasMs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasMs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B1C1516884AD5008DDDCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		042B1C1716884AD5008DDDCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,6 +39,9 @@
 		042B1C2716884AD5008DDDCF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		042B1C2916884AD5008DDDCF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		04E2BE39168879E800558673 /* MasMsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsEditorViewController.h; sourceTree = "<group>"; };
+		04E2BE3A168879E800558673 /* MasMsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsEditorViewController.m; sourceTree = "<group>"; };
+		04E2BE3D1688C46A00558673 /* DefaultSMS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSMS.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +88,11 @@
 		042B1C1B16884AD5008DDDCF /* MasMs */ = {
 			isa = PBXGroup;
 			children = (
-				042B1C2416884AD5008DDDCF /* MasMsAppDelegate.h */,
-				042B1C2516884AD5008DDDCF /* MasMsAppDelegate.m */,
+				04166BEE16885E29005F0758 /* MainStoryboard.storyboard */,
+				04E2BE39168879E800558673 /* MasMsEditorViewController.h */,
+				04E2BE3A168879E800558673 /* MasMsEditorViewController.m */,
+				04166BF416885EBF005F0758 /* MasMsSMSTableViewController.h */,
+				04166BF516885EBF005F0758 /* MasMsSMSTableViewController.m */,
 				042B1C1C16884AD5008DDDCF /* Supporting Files */,
 			);
 			path = MasMs;
@@ -88,6 +101,8 @@
 		042B1C1C16884AD5008DDDCF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				042B1C2416884AD5008DDDCF /* MasMsAppDelegate.h */,
+				042B1C2516884AD5008DDDCF /* MasMsAppDelegate.m */,
 				042B1C1D16884AD5008DDDCF /* MasMs-Info.plist */,
 				042B1C1E16884AD5008DDDCF /* InfoPlist.strings */,
 				042B1C2116884AD5008DDDCF /* main.m */,
@@ -95,6 +110,7 @@
 				042B1C2716884AD5008DDDCF /* Default.png */,
 				042B1C2916884AD5008DDDCF /* Default@2x.png */,
 				042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */,
+				04E2BE3D1688C46A00558673 /* DefaultSMS.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -155,6 +171,8 @@
 				042B1C2816884AD5008DDDCF /* Default.png in Resources */,
 				042B1C2A16884AD5008DDDCF /* Default@2x.png in Resources */,
 				042B1C2C16884AD5008DDDCF /* Default-568h@2x.png in Resources */,
+				04166BEF16885E29005F0758 /* MainStoryboard.storyboard in Resources */,
+				04E2BE3E1688C46A00558673 /* DefaultSMS.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +185,8 @@
 			files = (
 				042B1C2216884AD5008DDDCF /* main.m in Sources */,
 				042B1C2616884AD5008DDDCF /* MasMsAppDelegate.m in Sources */,
+				04166BF616885EBF005F0758 /* MasMsSMSTableViewController.m in Sources */,
+				04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +260,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasMs/MasMs-Prefix.pch";
 				INFOPLIST_FILE = "MasMs/MasMs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -251,6 +272,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasMs/MasMs-Prefix.pch";
 				INFOPLIST_FILE = "MasMs/MasMs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -275,6 +297,7 @@
 				042B1C3116884AD5008DDDCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

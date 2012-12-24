@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UTY-c0-1h3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--Mas MsSMS Table View Controller - Templates-->
+        <scene sceneID="0ue-bm-pTd">
+            <objects>
+                <tableViewController id="GHQ-PL-elW" customClass="MasMsSMSTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tb3-jf-9T9">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMS Template" textLabel="X5Q-6f-yQX" style="IBUITableViewCellStyleDefault" id="3or-JH-odg">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5Q-6f-yQX">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GHQ-PL-elW" id="Ewp-4H-L6t"/>
+                            <outlet property="delegate" destination="GHQ-PL-elW" id="oXQ-Y3-1g9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Templates" id="jfV-xp-qxY">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="KGM-VB-JOE">
+                            <connections>
+                                <action selector="new:" destination="GHQ-PL-elW" id="uOT-Pg-QhI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="9vX-ub-ZWf" kind="push" identifier="SMS Editor" id="CI4-V1-gmi"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3c-i5-cs3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="581" y="-268"/>
+        </scene>
+        <!--Mas Ms Editor View Controller - New Template-->
+        <scene sceneID="T2w-YP-Dcy">
+            <objects>
+                <viewController id="9vX-ub-ZWf" customClass="MasMsEditorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oE0-L6-xLm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9Y-3Y-RBr">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E9Y-3Y-RBr" firstAttribute="leading" secondItem="oE0-L6-xLm" secondAttribute="leading" type="default" id="0Ig-IZ-k0I"/>
+                            <constraint firstItem="E9Y-3Y-RBr" firstAttribute="bottom" secondItem="oE0-L6-xLm" secondAttribute="bottom" type="default" id="Xtd-a0-Lel"/>
+                            <constraint firstItem="E9Y-3Y-RBr" firstAttribute="top" secondItem="oE0-L6-xLm" secondAttribute="top" type="default" id="ahd-xn-ax2"/>
+                            <constraint firstItem="E9Y-3Y-RBr" firstAttribute="trailing" secondItem="oE0-L6-xLm" secondAttribute="trailing" type="default" id="kJH-6P-7jw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Template" id="KXu-VY-omT">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="2kv-U9-Aqe">
+                            <connections>
+                                <action selector="save:" destination="9vX-ub-ZWf" id="rgT-8L-Ig1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="E9Y-3Y-RBr" id="Nvy-p5-tNe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sF8-yV-miG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1297" y="-246"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Pni-DR-Kap">
+            <objects>
+                <navigationController id="UTY-c0-1h3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NpL-Mq-AUw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GHQ-PL-elW" kind="relationship" relationship="rootViewController" id="3VN-xv-XQq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NkL-YK-XTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149" y="-246"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
