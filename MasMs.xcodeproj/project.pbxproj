@@ -18,6 +18,7 @@
 		042B1C2A16884AD5008DDDCF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2916884AD5008DDDCF /* Default@2x.png */; };
 		042B1C2C16884AD5008DDDCF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */; };
 		0430C83B16893C7E000F8676 /* MainStoryboard.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 04166BEE16885E29005F0758 /* MainStoryboard.storyboard */; };
+		04B95F2F168955B600D96E54 /* MasMsContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */; };
 		04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2BE3A168879E800558673 /* MasMsEditorViewController.m */; };
 		04E2BE3E1688C46A00558673 /* DefaultSMS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E2BE3D1688C46A00558673 /* DefaultSMS.plist */; };
 		04F63E86168943CD00E9B544 /* MasMsSMSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F63E85168943CD00E9B544 /* MasMsSMSTableViewController.m */; };
@@ -38,6 +39,8 @@
 		042B1C2716884AD5008DDDCF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		042B1C2916884AD5008DDDCF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		04B95F2D168955B600D96E54 /* MasMsContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsContactsTableViewController.h; sourceTree = "<group>"; };
+		04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsContactsTableViewController.m; sourceTree = "<group>"; };
 		04E2BE39168879E800558673 /* MasMsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsEditorViewController.h; sourceTree = "<group>"; };
 		04E2BE3A168879E800558673 /* MasMsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsEditorViewController.m; sourceTree = "<group>"; };
 		04E2BE3D1688C46A00558673 /* DefaultSMS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSMS.plist; sourceTree = "<group>"; };
@@ -90,13 +93,15 @@
 		042B1C1B16884AD5008DDDCF /* MasMs */ = {
 			isa = PBXGroup;
 			children = (
+				04E2BE4B1688E3CC00558673 /* MasMsEditorViewControllerDelegate.h */,
 				04166BEE16885E29005F0758 /* MainStoryboard.storyboard */,
 				04E2BE39168879E800558673 /* MasMsEditorViewController.h */,
 				04E2BE3A168879E800558673 /* MasMsEditorViewController.m */,
 				04F63E84168943CD00E9B544 /* MasMsSMSTableViewController.h */,
 				04F63E85168943CD00E9B544 /* MasMsSMSTableViewController.m */,
+				04B95F2D168955B600D96E54 /* MasMsContactsTableViewController.h */,
+				04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */,
 				042B1C1C16884AD5008DDDCF /* Supporting Files */,
-				04E2BE4B1688E3CC00558673 /* MasMsEditorViewControllerDelegate.h */,
 			);
 			path = MasMs;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				042B1C2616884AD5008DDDCF /* MasMsAppDelegate.m in Sources */,
 				04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */,
 				04F63E86168943CD00E9B544 /* MasMsSMSTableViewController.m in Sources */,
+				04B95F2F168955B600D96E54 /* MasMsContactsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
