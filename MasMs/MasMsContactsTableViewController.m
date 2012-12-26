@@ -45,6 +45,7 @@
                 new_c.name = pname;
                 new_c.number = pnumber;
                 new_c.group = gname;
+                new_c.checked = YES;
                 
                 [gp addObject:new_c];
             }];
@@ -83,19 +84,18 @@
     MasMsContact *contac = [[self.people objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = contac.name;
     cell.detailTextLabel.text = contac.number;
-    cell.accessoryType = (indexPath.row % 2 == 1) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.accessoryType = contac.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }
 
 #pragma mark - TableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MasMsContact *contac = [[self.people objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    contac.checked = !contac.checked;
+    
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
+    cell.accessoryType = contac.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

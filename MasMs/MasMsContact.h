@@ -12,4 +12,5 @@
 @property NSString *name;
 @property NSString *number;
 @property NSString *group;
+@property BOOL checked;
 @end
