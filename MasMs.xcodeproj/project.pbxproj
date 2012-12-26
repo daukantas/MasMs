@@ -10,6 +10,9 @@
 		04166BEF16885E29005F0758 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04166BEE16885E29005F0758 /* MainStoryboard.storyboard */; };
 		0417348916896B9000EA4684 /* MasMsContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417348816896B9000EA4684 /* MasMsContact.m */; };
 		0417348C16896FE900EA4684 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0417348B16896FE900EA4684 /* AddressBook.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		041CBDAC168ACBDC00D0E08E /* 03-arrow-north.png in Resources */ = {isa = PBXBuildFile; fileRef = 041CBDAA168ACBDC00D0E08E /* 03-arrow-north.png */; };
+		041CBDAD168ACBDC00D0E08E /* 06-arrow-south.png in Resources */ = {isa = PBXBuildFile; fileRef = 041CBDAB168ACBDC00D0E08E /* 06-arrow-south.png */; };
+		041CBDB9168B620C00D0E08E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041CBDBB168B620C00D0E08E /* Localizable.strings */; };
 		042B1C1616884AD5008DDDCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1516884AD5008DDDCF /* UIKit.framework */; };
 		042B1C1816884AD5008DDDCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1716884AD5008DDDCF /* Foundation.framework */; };
 		042B1C1A16884AD5008DDDCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1916884AD5008DDDCF /* CoreGraphics.framework */; };
@@ -31,6 +34,9 @@
 		0417348716896B9000EA4684 /* MasMsContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsContact.h; sourceTree = "<group>"; };
 		0417348816896B9000EA4684 /* MasMsContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsContact.m; sourceTree = "<group>"; };
 		0417348B16896FE900EA4684 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		041CBDAA168ACBDC00D0E08E /* 03-arrow-north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-arrow-north.png"; sourceTree = "<group>"; };
+		041CBDAB168ACBDC00D0E08E /* 06-arrow-south.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-arrow-south.png"; sourceTree = "<group>"; };
+		041CBDBA168B620C00D0E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		042B1C1116884AD5008DDDCF /* MasMs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasMs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B1C1516884AD5008DDDCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		042B1C1716884AD5008DDDCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041CBDA9168ACB2A00D0E08E /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				041CBDAA168ACBDC00D0E08E /* 03-arrow-north.png */,
+				041CBDAB168ACBDC00D0E08E /* 06-arrow-south.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		042B1C0616884AD5008DDDCF = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +123,9 @@
 				04F63E85168943CD00E9B544 /* MasMsSMSTableViewController.m */,
 				04B95F2D168955B600D96E54 /* MasMsContactsTableViewController.h */,
 				04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */,
-				042B1C1C16884AD5008DDDCF /* Supporting Files */,
 				0417348716896B9000EA4684 /* MasMsContact.h */,
 				0417348816896B9000EA4684 /* MasMsContact.m */,
+				042B1C1C16884AD5008DDDCF /* Supporting Files */,
 			);
 			path = MasMs;
 			sourceTree = "<group>";
@@ -118,6 +133,7 @@
 		042B1C1C16884AD5008DDDCF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				041CBDA9168ACB2A00D0E08E /* icons */,
 				042B1C2416884AD5008DDDCF /* MasMsAppDelegate.h */,
 				042B1C2516884AD5008DDDCF /* MasMsAppDelegate.m */,
 				042B1C1D16884AD5008DDDCF /* MasMs-Info.plist */,
@@ -128,6 +144,7 @@
 				042B1C2916884AD5008DDDCF /* Default@2x.png */,
 				042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */,
 				04E2BE3D1688C46A00558673 /* DefaultSMS.plist */,
+				041CBDBB168B620C00D0E08E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,6 +207,9 @@
 				042B1C2C16884AD5008DDDCF /* Default-568h@2x.png in Resources */,
 				04166BEF16885E29005F0758 /* MainStoryboard.storyboard in Resources */,
 				04E2BE3E1688C46A00558673 /* DefaultSMS.plist in Resources */,
+				041CBDAC168ACBDC00D0E08E /* 03-arrow-north.png in Resources */,
+				041CBDAD168ACBDC00D0E08E /* 06-arrow-south.png in Resources */,
+				041CBDB9168B620C00D0E08E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +233,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		041CBDBB168B620C00D0E08E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				041CBDBA168B620C00D0E08E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		042B1C1E16884AD5008DDDCF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
