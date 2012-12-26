@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MasMsContactsTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollDown;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollUp;
 
 @end

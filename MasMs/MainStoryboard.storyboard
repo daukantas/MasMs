@@ -89,8 +89,16 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="OKw-a0-YpR"/>
-                        <barButtonItem image="06-arrow-south.png" id="jbS-24-kVo"/>
-                        <barButtonItem image="03-arrow-north.png" id="HvJ-nf-TT3"/>
+                        <barButtonItem image="06-arrow-south.png" id="jbS-24-kVo">
+                            <connections>
+                                <action selector="scrollSection:" destination="QYQ-QT-5RB" id="NaJ-ij-dwM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="03-arrow-north.png" id="HvJ-nf-TT3">
+                            <connections>
+                                <action selector="scrollSection:" destination="QYQ-QT-5RB" id="DxG-t2-g4g"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Contacts" id="BcC-3F-PNL">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="24e-6g-eFB">
@@ -100,6 +108,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="scrollDown" destination="jbS-24-kVo" id="lvt-3M-rQ8"/>
+                        <outlet property="scrollUp" destination="HvJ-nf-TT3" id="LgH-XY-GXb"/>
                         <outlet property="sendButton" destination="24e-6g-eFB" id="Pzv-2d-fOk"/>
                         <outlet property="tableView" destination="4mg-f2-QbG" id="n42-dw-kSJ"/>
                     </connections>

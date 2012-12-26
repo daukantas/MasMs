@@ -15,11 +15,19 @@
 
 @property (nonatomic) NSInteger checkedCount;
 @property (nonatomic) BOOL isSending;
+@property (nonatomic) NSInteger indexSection;
 @property (nonatomic, strong) NSArray *groups;
 @property (nonatomic, strong) NSArray *people;
 @end
 
 @implementation MasMsContactsTableViewController
+
+- (IBAction)scrollSection:(UIBarButtonItem *)sender {
+    if (sender == self.scrollDown && (self.indexSection + 1) < self.groups.count) self.indexSection += 1;
+    if (sender == self.scrollUp && self.indexSection > 0) self.indexSection -= 1;
+    NSIndexPath *ndxPath = [NSIndexPath indexPathForRow:0 inSection:self.indexSection];
+    [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:YES];
+}
 
 - (UIProgressView *) setProgress {
     UIProgressView *progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
@@ -38,6 +46,7 @@
     // 生成索引顺序相同的两个数组来存放Group (NSString) 与People (MasMsContact)
     // @[group1, group2, group3] @[@[group1_p1, group1_p2], @[group2_p1], @[]]
     
+    NSString *ungrouped = NSLocalizedString(@"UNGROUPED", NULL);
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:(1 + ABAddressBookGetGroupCount(addressBook))];
@@ -48,8 +57,6 @@
         [groups addObject:CFBridgingRelease(ABRecordCopyCompositeName(g))];
         [people addObject:[[[NSArray alloc] init] mutableCopy]];
     }];
-    
-    NSString *ungrouped = NSLocalizedString(@"UNGROUPED", NULL);
     
     [groups addObject:ungrouped];
     [people addObject:[[[NSArray alloc] init] mutableCopy]];
