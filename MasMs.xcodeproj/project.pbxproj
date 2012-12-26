@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		04166BEF16885E29005F0758 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04166BEE16885E29005F0758 /* MainStoryboard.storyboard */; };
+		0417348916896B9000EA4684 /* MasMsContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417348816896B9000EA4684 /* MasMsContact.m */; };
+		0417348C16896FE900EA4684 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0417348B16896FE900EA4684 /* AddressBook.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		042B1C1616884AD5008DDDCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1516884AD5008DDDCF /* UIKit.framework */; };
 		042B1C1816884AD5008DDDCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1716884AD5008DDDCF /* Foundation.framework */; };
 		042B1C1A16884AD5008DDDCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042B1C1916884AD5008DDDCF /* CoreGraphics.framework */; };
@@ -26,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		04166BEE16885E29005F0758 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0417348716896B9000EA4684 /* MasMsContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsContact.h; sourceTree = "<group>"; };
+		0417348816896B9000EA4684 /* MasMsContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsContact.m; sourceTree = "<group>"; };
+		0417348B16896FE900EA4684 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		042B1C1116884AD5008DDDCF /* MasMs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasMs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B1C1516884AD5008DDDCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		042B1C1716884AD5008DDDCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0417348C16896FE900EA4684 /* AddressBook.framework in Frameworks */,
 				042B1C1616884AD5008DDDCF /* UIKit.framework in Frameworks */,
 				042B1C1816884AD5008DDDCF /* Foundation.framework in Frameworks */,
 				042B1C1A16884AD5008DDDCF /* CoreGraphics.framework in Frameworks */,
@@ -66,6 +72,7 @@
 		042B1C0616884AD5008DDDCF = {
 			isa = PBXGroup;
 			children = (
+				0417348B16896FE900EA4684 /* AddressBook.framework */,
 				042B1C1B16884AD5008DDDCF /* MasMs */,
 				042B1C1416884AD5008DDDCF /* Frameworks */,
 				042B1C1216884AD5008DDDCF /* Products */,
@@ -102,6 +109,8 @@
 				04B95F2D168955B600D96E54 /* MasMsContactsTableViewController.h */,
 				04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */,
 				042B1C1C16884AD5008DDDCF /* Supporting Files */,
+				0417348716896B9000EA4684 /* MasMsContact.h */,
+				0417348816896B9000EA4684 /* MasMsContact.m */,
 			);
 			path = MasMs;
 			sourceTree = "<group>";
@@ -197,6 +206,7 @@
 				04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */,
 				04F63E86168943CD00E9B544 /* MasMsSMSTableViewController.m in Sources */,
 				04B95F2F168955B600D96E54 /* MasMsContactsTableViewController.m in Sources */,
+				0417348916896B9000EA4684 /* MasMsContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
