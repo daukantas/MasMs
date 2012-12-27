@@ -9,14 +9,16 @@
 #import "MasMsSMSTableViewController.h"
 #import "MasMsEditorViewController.h"
 #import "MasMsEditorViewControllerDelegate.h"
+#import <AddressBook/AddressBook.h>
 
 #define HAS_RUN_APP_ONCE_KEY @"hasRunAppOnceKey"
 #define TEMPLATES_KEY @"templateKey"
 #define NEW_TEMPLATE_INDEX -1
 
-@interface MasMsSMSTableViewController () <MasMsEditorViewControllerDelegate>
+@interface MasMsSMSTableViewController () <MasMsEditorViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSArray *templates;
 @property (nonatomic) NSInteger index;
+@property (nonatomic) BOOL canLoadContacts;
 @end
 
 @implementation MasMsSMSTableViewController
@@ -66,8 +68,33 @@
     return self;
 }
 
+- (void)alertPrivacy {
+    self.canLoadContacts = NO;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warnning"
+                                                    message:@"Please check your Contacts Privacy setting."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:NULL];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
+    
+    if (status == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+            self.canLoadContacts = granted;
+        });
+        CFRelease(addressBook);
+    } else if (status == kABAuthorizationStatusDenied || status == kABAuthorizationStatusRestricted) {
+        [self alertPrivacy];
+    } else if (status == kABAuthorizationStatusAuthorized) {
+        self.canLoadContacts = YES;
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -158,7 +185,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"Choose Contacts" sender:self];
+    if (! self.canLoadContacts) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [self alertPrivacy];
+    } else {
+        [self performSegueWithIdentifier:@"Choose Contacts" sender:self];
+    }
 }
 
 @end
