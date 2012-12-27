@@ -23,8 +23,23 @@
 @implementation MasMsContactsTableViewController
 
 - (IBAction)scrollSection:(UIBarButtonItem *)sender {
-    if (sender == self.scrollDown && (self.indexSection + 1) < self.groups.count) self.indexSection += 1;
+    if (sender == self.scrollDown && self.indexSection + 1 < self.groups.count) self.indexSection += 1;
     if (sender == self.scrollUp && self.indexSection > 0) self.indexSection -= 1;
+    
+    if ([[self.people objectAtIndex:self.indexSection] count] == 0) {
+        // 当前indexSection不在临界点时可继续滚动
+        // 当前indexSection到达临界点时反向滚动
+        if (self.indexSection > 0 && self.indexSection + 1 < self.groups.count) {
+            [self scrollSection:sender];
+        } else if (self.indexSection == 0) {
+            [self scrollSection:self.scrollDown];
+        } else if (self.indexSection + 1 == self.groups.count) {
+            [self scrollSection:self.scrollUp];
+        }
+        
+        return;
+    }
+    
     NSIndexPath *ndxPath = [NSIndexPath indexPathForRow:0 inSection:self.indexSection];
     [self.tableView scrollToRowAtIndexPath:ndxPath atScrollPosition:UITableViewScrollPositionTop  animated:YES];
 }
@@ -51,46 +66,64 @@
     
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:(1 + ABAddressBookGetGroupCount(addressBook))];
     NSMutableArray *people = [NSMutableArray arrayWithCapacity:(1 + ABAddressBookGetGroupCount(addressBook))];
+    NSMutableArray *ungroup_people = [(NSArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook)) mutableCopy];
     
     [(NSArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllGroups(addressBook)) enumerateObjectsUsingBlock:^(id obj_g, NSUInteger idx, BOOL *stop) {
-        ABRecordRef g = (__bridge ABRecordRef)obj_g;
-        [groups addObject:CFBridgingRelease(ABRecordCopyCompositeName(g))];
-        [people addObject:[[[NSArray alloc] init] mutableCopy]];
-    }];
-    
-    [groups addObject:ungrouped];
-    [people addObject:[[[NSArray alloc] init] mutableCopy]];
-    
-    [(NSArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook)) enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ABRecordRef ref = (__bridge ABRecordRef)obj;
-        ABRecordRef group_ref = ABAddressBookGetGroupWithRecordID(addressBook, ABRecordGetRecordID(ref));
-        ABMultiValueRef numbers_ref = ABRecordCopyValue(ref, kABPersonPhoneProperty);
+        ABRecordRef group_ref = (__bridge ABRecordRef)obj_g;
         
-        NSString *pname = CFBridgingRelease(ABRecordCopyCompositeName(ref));
+        NSMutableArray *members = [[[NSArray alloc] init] mutableCopy];
         NSString *gname = (group_ref == NULL) ? ungrouped : CFBridgingRelease(ABRecordCopyCompositeName(group_ref));
         
-        NSMutableArray *gpeople = [people objectAtIndex:[groups indexOfObject:gname]];
-        
-        [(NSArray *) CFBridgingRelease(ABMultiValueCopyArrayOfAllValues(numbers_ref)) enumerateObjectsUsingBlock:^(id num, NSUInteger idx, BOOL *stop) {
-            NSString *pnumber = CFBridgingRelease(CFBridgingRetain(num));
-            
-            MasMsContact *new_c = [[MasMsContact alloc] init];
-            new_c.name = pname;
-            new_c.number = pnumber;
-            new_c.group = gname;
-            new_c.checked = NO;
-            
-            [gpeople addObject:new_c];
+        [(NSArray *)CFBridgingRelease(ABGroupCopyArrayOfAllMembers(group_ref)) enumerateObjectsUsingBlock:^(id obj_m, NSUInteger idx, BOOL *stop) {
+            [ungroup_people removeObject:obj_m];
+            [members addObjectsFromArray:[self makeContact:(__bridge ABRecordRef)obj_m withGroupName:gname]];
         }];
         
-        CFRelease(numbers_ref);
+        if (members.count != 0) {
+            [groups addObject:gname];
+            [people addObject:members];
+        }
     }];
+    
+    if (ungroup_people.count != 0) {
+        NSMutableArray *members = [[[NSArray alloc] init] mutableCopy];
+        
+        [ungroup_people enumerateObjectsUsingBlock:^(id obj_m, NSUInteger idx, BOOL *stop) {
+            [members addObjectsFromArray:[self makeContact:(__bridge ABRecordRef)obj_m withGroupName:ungrouped]];
+        }];
+    
+        [groups addObject:ungrouped];
+        [people addObject:members];
+    }
     
     CFRelease(addressBook);
     
     self.people = [people copy];
     self.groups = [groups copy];
 }
+
+- (NSArray *) makeContact:(ABRecordRef)member withGroupName:(NSString *)gname {
+    NSString *pname = CFBridgingRelease(ABRecordCopyCompositeName(member));
+    ABMultiValueRef numbers_ref = ABRecordCopyValue(member, kABPersonPhoneProperty);
+    
+    NSMutableArray *result = [[[NSArray alloc] init] mutableCopy];
+    
+    [(NSArray *) CFBridgingRelease(ABMultiValueCopyArrayOfAllValues(numbers_ref)) enumerateObjectsUsingBlock:^(id obj_num, NSUInteger idx, BOOL *stop) {
+        NSString *pnumber = CFBridgingRelease(CFBridgingRetain(obj_num));
+        
+        MasMsContact *new_c = [[MasMsContact alloc] init];
+        new_c.name = pname;
+        new_c.number = pnumber;
+        new_c.group = gname;
+        new_c.checked = NO;
+        
+        [result addObject:new_c];
+    }];
+    
+    return [result copy];
+}
+
+
 
 - (void)viewDidLoad {
     self.isSending = NO;
