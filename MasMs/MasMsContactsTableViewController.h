@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface MasMsContactsTableViewController : UITableViewController
+@interface MasMsContactsTableViewController : UITableViewController <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollDown;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollUp;
-
+@property (nonatomic, strong) NSString *message;
 @end

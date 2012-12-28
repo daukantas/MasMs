@@ -9,6 +9,7 @@
 #import "MasMsSMSTableViewController.h"
 #import "MasMsEditorViewController.h"
 #import "MasMsEditorViewControllerDelegate.h"
+#import "MasMsContactsTableViewController.h"
 #import <AddressBook/AddressBook.h>
 
 #define HAS_RUN_APP_ONCE_KEY @"hasRunAppOnceKey"
@@ -110,6 +111,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Choose Contacts"]) {
+        NSString *sms = [self.templates objectAtIndex:self.index];
+        MasMsContactsTableViewController *controller = segue.destinationViewController;
+        controller.message = sms;
+    }
+    
     if ([segue.identifier isEqualToString:@"SMS Editor"]) {
         NSString *sms = self.index == NEW_TEMPLATE_INDEX ? @"" : [self.templates objectAtIndex:self.index];
         MasMsEditorViewController *editor = segue.destinationViewController;

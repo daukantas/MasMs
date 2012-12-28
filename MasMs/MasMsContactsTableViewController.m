@@ -9,8 +9,11 @@
 #import "MasMsContactsTableViewController.h"
 #import "MasMsContact.h"
 #import <AddressBook/AddressBook.h>
+#import <MessageUI/MessageUI.h>
 
-@interface MasMsContactsTableViewController ()
+NSString * MOBILE = @"^1\\d{2}[-]{0,1}\\d{4}[-]{0,1}\\d{4}$";
+
+@interface MasMsContactsTableViewController() 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButton;
 
 @property (nonatomic) NSInteger checkedCount;
@@ -18,11 +21,15 @@
 @property (nonatomic) NSInteger indexSection;
 @property (nonatomic, strong) NSArray *groups;
 @property (nonatomic, strong) NSArray *people;
+
+- (NSArray *) getReadyNumbers;
 @end
 
 @implementation MasMsContactsTableViewController
 
 - (IBAction)scrollSection:(UIBarButtonItem *)sender {
+    if (self.groups.count == 0) return;
+    
     if (sender == self.scrollDown && self.indexSection + 1 < self.groups.count) self.indexSection += 1;
     if (sender == self.scrollUp && self.indexSection > 0) self.indexSection -= 1;
     
@@ -92,8 +99,10 @@
             [members addObjectsFromArray:[self makeContact:(__bridge ABRecordRef)obj_m withGroupName:ungrouped]];
         }];
     
-        [groups addObject:ungrouped];
-        [people addObject:members];
+        if (members.count != 0) {
+            [groups addObject:ungrouped];
+            [people addObject:members];
+        }
     }
     
     CFRelease(addressBook);
@@ -106,10 +115,15 @@
     NSString *pname = CFBridgingRelease(ABRecordCopyCompositeName(member));
     ABMultiValueRef numbers_ref = ABRecordCopyValue(member, kABPersonPhoneProperty);
     
+    NSPredicate *regexMobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     NSMutableArray *result = [[[NSArray alloc] init] mutableCopy];
     
     [(NSArray *) CFBridgingRelease(ABMultiValueCopyArrayOfAllValues(numbers_ref)) enumerateObjectsUsingBlock:^(id obj_num, NSUInteger idx, BOOL *stop) {
         NSString *pnumber = CFBridgingRelease(CFBridgingRetain(obj_num));
+        
+        if ([regexMobile evaluateWithObject:pnumber] == NO) {
+            return;
+        }
         
         MasMsContact *new_c = [[MasMsContact alloc] init];
         new_c.name = pname;
@@ -122,8 +136,6 @@
     
     return [result copy];
 }
-
-
 
 - (void)viewDidLoad {
     self.isSending = NO;
@@ -140,41 +152,16 @@
 }
 
 - (IBAction)send:(UIBarButtonItem *)sender {
-    self.isSending = YES;
-    
-    [self setSpinner];
-    
-    UIView *originLabel = self.navigationItem.titleView;
-    UIProgressView *progress = [self setProgress];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray *col = [[NSMutableArray alloc] init];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"checked == YES"];
+    MFMessageComposeViewController *smsController;
+    if ([MFMessageComposeViewController canSendText]) {
+        smsController = [[MFMessageComposeViewController alloc] init];
         
-        for (NSArray *array in self.people) {
-            [col addObjectsFromArray:[array filteredArrayUsingPredicate:predicate]];
-        }
-        
-        [col enumerateObjectsUsingBlock:^(MasMsContact *obj, NSUInteger idx, BOOL *stop) {
-            NSLog(@"simulator send message to %@", obj.name);
-            
-            float rate = [[NSNumber numberWithUnsignedInteger:(idx + 1)] floatValue] / col.count;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [progress setProgress:rate animated:YES];
-            });
-            
-            sleep(1.5);
-        }];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.isSending = NO;
-            self.navigationItem.rightBarButtonItem = sender;
-            self.navigationItem.titleView = originLabel;
-        });
-    });
+        smsController.recipients = [self getReadyNumbers];
+        smsController.body = self.message;
+        smsController.messageComposeDelegate = self;
+        [self presentViewController:smsController animated:YES completion:NULL];
+    }
 }
-
 
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -214,22 +201,85 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    
-    CGRect rect = CGRectMake(5, 0, 300, 30);
-    UILabel *label = [[UILabel alloc] initWithFrame:rect];
-    
-    label.text = [self.groups objectAtIndex:section];
-    label.font = [UIFont boldSystemFontOfSize:12];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    
     view.backgroundColor = [UIColor grayColor];
-    [view addSubview:label];
+    
+    UILabel *groupName = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 300, 40)];
+    
+    groupName.text = [self.groups objectAtIndex:section];
+    groupName.font = [UIFont boldSystemFontOfSize:12];
+    groupName.textColor = [UIColor whiteColor];
+    groupName.backgroundColor = [UIColor clearColor];
+    
+    UIButton * headerBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+    headerBtn.backgroundColor = [UIColor grayColor];
+    headerBtn.frame = CGRectMake(225.0, 5.0, 100.0, 30.0);
+    
+    [headerBtn setTag:section];
+    [headerBtn setTitle:@"Select All" forState:UIControlStateNormal];
+    [headerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [headerBtn addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchDown];
+    
+    [view addSubview:groupName];
+    [view addSubview:headerBtn];
+    
     return view;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 40;
+}
+
+#pragma mark - MFMessageComposeViewControllerDelegate
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+	
+	switch (result) {
+        case MessageComposeResultSent:
+            NSLog(@"Sented");
+            break;
+        case MessageComposeResultCancelled:
+            NSLog(@"Cancel");
+            break;
+        case MessageComposeResultFailed:
+            NSLog(@"Failed");
+            break;
+        default:
+            break;
+    }
+    
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - private
+
+- (NSArray *) getReadyNumbers {
+    NSMutableArray *numbers = [[[NSArray alloc] init] mutableCopy];
+    
+    [self.people enumerateObjectsUsingBlock:^(NSMutableArray *members, NSUInteger idx, BOOL *stop) {
+        [members enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj checked]) [numbers addObject:[obj number]];
+        }];
+    }];
+    
+    return [numbers copy];
+}
+
+- (void) selectAll:(UIButton *)sender {
+    __block BOOL allSelect = YES;
+    
+    [[self.people objectAtIndex:sender.tag] enumerateObjectsUsingBlock:^(MasMsContact *obj, NSUInteger idx, BOOL *stop) {
+        if (!obj.checked) allSelect = NO;
+        obj.checked = YES;
+    }];
+    
+    if (allSelect) {
+        [[self.people objectAtIndex:sender.tag] enumerateObjectsUsingBlock:^(MasMsContact *obj, NSUInteger idx, BOOL *stop) {
+            obj.checked = NO;
+        }];
+    }
+    
+    [self.tableView reloadData];
 }
 
 @end

@@ -23,6 +23,7 @@
 		042B1C2A16884AD5008DDDCF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2916884AD5008DDDCF /* Default@2x.png */; };
 		042B1C2C16884AD5008DDDCF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */; };
 		0430C83B16893C7E000F8676 /* MainStoryboard.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 04166BEE16885E29005F0758 /* MainStoryboard.storyboard */; };
+		044CB567168D5EE400CC051F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044CB566168D5EE400CC051F /* MessageUI.framework */; };
 		04B95F2F168955B600D96E54 /* MasMsContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */; };
 		04E2BE3B168879E800558673 /* MasMsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2BE3A168879E800558673 /* MasMsEditorViewController.m */; };
 		04E2BE3E1688C46A00558673 /* DefaultSMS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E2BE3D1688C46A00558673 /* DefaultSMS.plist */; };
@@ -52,6 +53,7 @@
 		042B1C2716884AD5008DDDCF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		042B1C2916884AD5008DDDCF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		042B1C2B16884AD5008DDDCF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		044CB566168D5EE400CC051F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		04B95F2D168955B600D96E54 /* MasMsContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsContactsTableViewController.h; sourceTree = "<group>"; };
 		04B95F2E168955B600D96E54 /* MasMsContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasMsContactsTableViewController.m; sourceTree = "<group>"; };
 		04E2BE39168879E800558673 /* MasMsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasMsEditorViewController.h; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044CB567168D5EE400CC051F /* MessageUI.framework in Frameworks */,
 				0417348C16896FE900EA4684 /* AddressBook.framework in Frameworks */,
 				042B1C1616884AD5008DDDCF /* UIKit.framework in Frameworks */,
 				042B1C1816884AD5008DDDCF /* Foundation.framework in Frameworks */,
@@ -89,7 +92,6 @@
 		042B1C0616884AD5008DDDCF = {
 			isa = PBXGroup;
 			children = (
-				0417348B16896FE900EA4684 /* AddressBook.framework */,
 				042B1C1B16884AD5008DDDCF /* MasMs */,
 				042B1C1416884AD5008DDDCF /* Frameworks */,
 				042B1C1216884AD5008DDDCF /* Products */,
@@ -107,6 +109,8 @@
 		042B1C1416884AD5008DDDCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				044CB566168D5EE400CC051F /* MessageUI.framework */,
+				0417348B16896FE900EA4684 /* AddressBook.framework */,
 				042B1C1516884AD5008DDDCF /* UIKit.framework */,
 				042B1C1716884AD5008DDDCF /* Foundation.framework */,
 				042B1C1916884AD5008DDDCF /* CoreGraphics.framework */,
