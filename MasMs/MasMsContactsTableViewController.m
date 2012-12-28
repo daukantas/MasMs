@@ -276,12 +276,19 @@ NSString * MOBILE = @"^1\\d{2}[-]{0,1}\\d{4}[-]{0,1}\\d{4}$";
     
     [[self.people objectAtIndex:sender.tag] enumerateObjectsUsingBlock:^(MasMsContact *obj, NSUInteger idx, BOOL *stop) {
         if (!obj.checked) allSelect = NO;
-        obj.checked = YES;
+        
+        if (obj.checked == NO) {
+            obj.checked = YES;
+            [self setCheckCounter:1];
+        }
     }];
     
     if (allSelect) {
         [[self.people objectAtIndex:sender.tag] enumerateObjectsUsingBlock:^(MasMsContact *obj, NSUInteger idx, BOOL *stop) {
-            obj.checked = NO;
+            if (obj.checked == YES) {
+                obj.checked = NO;
+                [self setCheckCounter:-1];
+            }
         }];
     }
     
