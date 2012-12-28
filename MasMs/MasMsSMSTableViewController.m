@@ -196,6 +196,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         [self alertPrivacy];
     } else {
+        self.index = indexPath.row;
         [self performSegueWithIdentifier:@"Choose Contacts" sender:self];
     }
 }

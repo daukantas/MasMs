@@ -234,21 +234,27 @@ NSString * MOBILE = @"^1\\d{2}[-]{0,1}\\d{4}[-]{0,1}\\d{4}$";
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
 	
-	switch (result) {
-        case MessageComposeResultSent:
-            NSLog(@"Sented");
-            break;
-        case MessageComposeResultCancelled:
-            NSLog(@"Cancel");
-            break;
-        case MessageComposeResultFailed:
-            NSLog(@"Failed");
-            break;
-        default:
-            break;
-    }
+	
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed"
+                                                    message:@"Send message failed."
+                                                   delegate:NULL
+                                          cancelButtonTitle:@"I got it"
+                                          otherButtonTitles:NULL];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
     
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[self dismissViewControllerAnimated:YES completion:^() {
+        switch (result) {
+            case MessageComposeResultCancelled:
+                break;
+            case MessageComposeResultFailed:
+                [alert show];
+                break;
+            default:
+                [self.navigationController popViewControllerAnimated:YES];
+                break;
+        }
+    
+    }];
 }
 
 #pragma mark - private
